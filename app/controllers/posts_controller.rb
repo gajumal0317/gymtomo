@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = '投稿しました。'
-      redirect_to user_path(current_user.id)
+      redirect_back(fallback_location: root_path)
     else
       @posts = current_user.posts.order(id: :desc).page(params[:page])
       flash.now[:danger] = '投稿できませんでした。'
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :img, :remove_img)
   end
   
   def correct_user

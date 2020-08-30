@@ -6,9 +6,17 @@ Rails.application.routes.draw do
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
 
-    
     get 'signup', to: 'users#new'
-    resources :users
+    get 'member/:id', to: 'gyms#member', as: 'member'
+    
+    resources :users do
+      member do
+        get :joinings
+      end
+    end
     
     resources :posts, only: [:new, :create, :edit, :update, :destroy]
+    resources :gyms, only: [:index, :new, :show, :create, :edit, :update]
+    resources :gym_users, only: [:create, :destroy]
+    
 end

@@ -1,0 +1,21 @@
+<ul class="list-unstyled">
+  <% gyms.each do |gym| %>
+    <div class="card">
+        <p><%= link_to gym.name, gym_path(gym) %></p>
+        <div>
+          <p><%= gym.address %></p>
+        </div>
+        <div>
+          <strong>Image:</strong>
+          <% if gym.img? %>
+            <%= image_tag gym.img.url %>
+          <% else %>
+            <%= image_tag "noimage.jpg" %>
+          <% end %>
+        </div>
+    <%= link_to 'edit', edit_gym_path(gym), class: 'btn btn-lg btn-primary'%>
+    <%= render 'gym_users/join_button', gym: gym %>
+    </div>
+  <% end %>
+  <%= paginate gyms %>
+</ul>

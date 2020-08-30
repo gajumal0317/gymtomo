@@ -1,0 +1,17 @@
+     <div class="card">
+        <p><%= @gym.name %></p>
+        <div>
+          <p><%= @gym.address %></p>
+        </div>
+        <div>
+          <strong>Image:</strong>
+          <% if @gym.img? %>
+            <%= image_tag @gym.img.url %>
+          <% else %>
+            <%= image_tag "noimage.jpg" %>
+          <% end %>
+        </div>
+    <%= link_to 'edit', edit_gym_path(@gym), class: 'btn btn-lg btn-primary'%>
+    <%= link_to 'メンバー', member_path(@gym), class: 'btn btn-lg btn-primary'%>
+    <%= render 'gym_users/join_button', gym: @gym %>
+    </div>

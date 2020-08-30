@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_092443) do
+ActiveRecord::Schema.define(version: 2020_08_30_023433) do
+
+  create_table "gym_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "gym_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gym_id"], name: "index_gym_users_on_gym_id"
+    t.index ["user_id", "gym_id"], name: "index_gym_users_on_user_id_and_gym_id", unique: true
+    t.index ["user_id"], name: "index_gym_users_on_user_id"
+  end
+
+  create_table "gyms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "img"
+    t.string "review"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
@@ -18,6 +37,8 @@ ActiveRecord::Schema.define(version: 2020_08_27_092443) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "gym_id", null: false
+    t.index ["gym_id"], name: "index_posts_on_gym_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -27,7 +48,10 @@ ActiveRecord::Schema.define(version: 2020_08_27_092443) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "img"
   end
 
+  add_foreign_key "gym_users", "gyms"
+  add_foreign_key "gym_users", "users"
   add_foreign_key "posts", "users"
 end
