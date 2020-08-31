@@ -5,6 +5,15 @@ class User < ApplicationRecord
     validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }    
+    validates :status, presence: true, length: { maximum: 200 }
+    validate  :img_size
+    
+    # アップロードされた画像のサイズをバリデーションする
+    def img_size
+      if img.size > 5.megabytes
+        errors.add(:img, "should be less than 5MB")
+      end
+    end
     has_secure_password
     has_many :posts
     has_many :gym_users

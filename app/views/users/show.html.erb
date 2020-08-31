@@ -1,6 +1,6 @@
 
-<%= link_to 'new', new_gym_path, class: 'btn btn-lg btn-primary'%>
-<%= link_to 'edit', edit_user_path, class: 'btn btn-lg btn-primary'%>
+
+
 <div class="row">
   <aside class="col-sm-4">
     <div class="card">
@@ -9,14 +9,14 @@
       </div>
       <div class="card-body">
       <% if @user.img? %>                                                              
-          <%= image_tag @user.img.url %>
+          <%= image_tag @user.img.thumb.url %>
       <% else %>
-          <%= image_tag "noimage.jpg" %>
+          <%= image_tag "default.jpg", :size => '200x200' %>
       <% end %> 
       </div>
+      <%= @user.status%>
     </div>
   </aside>
-<%#プロフィール#%>
   <div class="col-sm-4">
     <div class="card">
       <%= render 'gyms/gyms', gyms: @gyms %>

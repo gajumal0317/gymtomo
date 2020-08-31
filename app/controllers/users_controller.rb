@@ -37,7 +37,7 @@ class UsersController < ApplicationController
  
       if @user.update(user_params)
         flash[:success] = 'ユーザー情報を編集しました。'
-        render :edit
+        redirect_to user_path(current_user)
       else
         flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
         render :edit
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation,:img)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :img, :status)
   end
 
 end

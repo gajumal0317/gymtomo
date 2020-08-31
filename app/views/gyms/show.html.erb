@@ -1,17 +1,28 @@
+<div class="row">
+  <aside class="col-sm-4">
      <div class="card">
-        <p><%= @gym.name %></p>
         <div>
-          <p><%= @gym.address %></p>
+          <% if @gym.img? %>
+            <%= image_tag @gym.img.thumb.url %>
+          <% else %>
+            <%= image_tag "default_gym.jpg", :size => '200x200' %>
+          <% end %>
         </div>
         <div>
-          <strong>Image:</strong>
-          <% if @gym.img? %>
-            <%= image_tag @gym.img.url %>
-          <% else %>
-            <%= image_tag "noimage.jpg" %>
-          <% end %>
+        <%= link_to @gym.name, gym_path(@gym) %>
+        </div>
+        <div>
+        <%= @gym.address %>
         </div>
     <%= link_to 'edit', edit_gym_path(@gym), class: 'btn btn-lg btn-primary'%>
     <%= link_to 'メンバー', member_path(@gym), class: 'btn btn-lg btn-primary'%>
     <%= render 'gym_users/join_button', gym: @gym %>
     </div>
+  </aside>
+  <div class="col-sm-4">    
+    <%= render 'posts/post_form', {post: @post, gym: @gym} %>
+  </div>
+</div>
+  <div class="card">
+    <%= render 'posts/posts', posts: @posts %>
+  </div>

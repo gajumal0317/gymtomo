@@ -3,6 +3,11 @@
     <li class="media mb-3">
       
       <div class="media-body">
+        <% if post.user.img? %>                                                              
+          <%= image_tag post.user.img.thumb50.url %>
+        <% else %>
+          <%= image_tag "default.jpg", :size => '100x100' %>
+        <% end %>
         <div>
           <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
         </div>
@@ -10,13 +15,9 @@
           <p><%= post.content %></p>
         </div>
         
-          <strong>Image:</strong>
           <% if post.img? %>
             <%= image_tag post.img.url %>
-          <% else %>
-          <%= image_tag "noimage.jpg" %>
           <% end %>
-        
         <div>
           <% if current_user == post.user %>
             <%= link_to "Delete", post, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>

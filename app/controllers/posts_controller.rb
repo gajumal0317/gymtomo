@@ -2,12 +2,10 @@ class PostsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:edit, :update, :destroy]
   
-  def new
-    @post = current_user.posts.build
-  end
 
   def create
     @post = current_user.posts.build(post_params)
+    
     if @post.save
       flash[:success] = '投稿しました。'
       redirect_back(fallback_location: root_path)
@@ -40,7 +38,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :img, :remove_img)
+    params.require(:post).permit(:content, :img, :gym_id)
   end
   
   def correct_user

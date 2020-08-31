@@ -12,6 +12,9 @@ class GymsController < ApplicationController
 
   def show
     @gym = Gym.find(params[:id])
+    @post = current_user.posts.build # form_with 用
+    @posts = @gym.posts.order(id: :desc).page(params[:page]).per(10)
+  
   end
   
   def member
