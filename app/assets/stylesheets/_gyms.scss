@@ -1,0 +1,58 @@
+.gym_card_wrap {
+    display: flex;
+    padding: 2.5% 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.gym_card {
+  background-color: #f8f9fa;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .16);
+  width: 250px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #212121;
+  text-decoration: none;
+  border-radius: 15px;
+}
+
+.gym_card_header {
+  flex-wrap: wrap;
+}
+
+.gym_card_title {
+  padding: 1rem 1rem 0;
+  font-size: 1.25rem;
+}
+
+.gym_card_thumbnail {
+  margin: 0;
+  text-align: center;
+}
+
+.gym_card_image {
+  width: 100%;
+}
+
+.gym_card_body {
+  padding: 1rem;
+  background-color: white;
+}
+
+.gym_card_text {
+  font-size: .75rem;
+}
+
+.gym_card_text + .card_text {
+  margin-top: .5rem;
+}
+
+.gym_card_text.-number {
+  text-align: right;
+}
+
+.gym_card_footer {
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+}

@@ -4,6 +4,7 @@ class GymsController < ApplicationController
   
   def index
     @gyms = Gym.order(id: :desc).page(params[:page]).per(10)
+    
   end
   
   def new

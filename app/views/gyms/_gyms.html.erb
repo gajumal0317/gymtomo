@@ -1,23 +1,27 @@
-<ul class="list-unstyled">
+<ul class = "gym_card_wrap">
   <% gyms.each do |gym| %>
-    <div class="card">
-        <div>
-          <% if gym.img? %>
-            <%= image_tag gym.img.thumb.url %>
-          <% else %>
-            <%= image_tag "default_gym.jpg", :size => '200x200' %>
-          <% end %>
-        </div>
-        <div>
-        <%= link_to gym.name, gym_path(gym) %>
-        </div>
-        <div>
-        <%= gym.address %>
-        </div>
-        
-    <%= link_to 'edit', edit_gym_path(gym), class: 'btn btn-lg btn-primary'%>
-    <%= render 'gym_users/join_button', gym: gym %>
-    </div>
+    <article class="gym_card">
+      <div class="gym_card_header">
+        <figure class="gym_card_thumbnail">
+          <img class="gym_card_image">
+            <% if gym.img? %>
+              <%= image_tag gym.img.thumb.url %>
+            <% else %>
+              <%= image_tag "default_gym.jpg", :size => '225x225' %>
+            <% end %>
+          </img>
+        </figure>
+      </div>
+      <div class="gym_card_body">
+        <h3 class="gym_card_title"><%= gym.name %></h3>
+        <p class="gym_card_text"><%= gym.address %></p>
+        <p class="gym_card_text -number">メンバー<%= gym.users.count%>人</p>
+      </div>
+      <div class="gym_card_footer">
+        <p class="gym_card_text">
+          <a class="button -compact" href="<%= gym_path(gym) %>" >ジムの詳細を見る</a></p>
+      </div>
+    </article>
   <% end %>
   <%= paginate gyms %>
-</ul>
+</ul>  

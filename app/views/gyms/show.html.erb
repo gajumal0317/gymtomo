@@ -1,23 +1,28 @@
 <div class="row">
   <aside class="col-sm-4">
-     <div class="card">
-        <div>
-          <% if @gym.img? %>
-            <%= image_tag @gym.img.thumb.url %>
-          <% else %>
-            <%= image_tag "default_gym.jpg", :size => '200x200' %>
-          <% end %>
-        </div>
-        <div>
-        <%= link_to @gym.name, gym_path(@gym) %>
-        </div>
-        <div>
-        <%= @gym.address %>
-        </div>
-    <%= link_to 'edit', edit_gym_path(@gym), class: 'btn btn-lg btn-primary'%>
-    <%= link_to 'メンバー', member_path(@gym), class: 'btn btn-lg btn-primary'%>
-    <%= render 'gym_users/join_button', gym: @gym %>
-    </div>
+    <article class="gym_card">
+      <div class="gym_card_header">
+        <figure class="gym_card_thumbnail">
+          <img class="gym_card_image">
+            <% if @gym.img? %>
+              <%= image_tag @gym.img.thumb.url %>
+            <% else %>
+              <%= image_tag "default_gym.jpg", :size => '200x200' %>
+            <% end %>
+          </img>
+        </figure>
+      </div>
+      <div class="gym_card_body">
+        <h3 class="gym_card_title"><%= @gym.name %></h3>
+        <p class="gym_card_text"><%= @gym.address %></p>
+        <p class="gym_card_text -number"><%= link_to 'メンバー#{@gym.users.count}人', member_path(@gym)%></p>
+      </div>
+      <div class="card_footer">
+         <%= link_to 'edit', edit_gym_path(@gym), class: 'btn btn-lg btn-primary'%>
+
+        <%= render 'gym_users/join_button', gym: @gym %>
+      </div>
+    </article>
   </aside>
   <div class="col-sm-4">    
     <%= render 'posts/post_form', {post: @post, gym: @gym} %>
