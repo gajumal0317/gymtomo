@@ -15,12 +15,11 @@
       <div class="gym_card_body">
         <h3 class="gym_card_title"><%= @gym.name %></h3>
         <p class="gym_card_text"><%= @gym.address %></p>
-        <p class="gym_card_text -number"><%= link_to 'メンバー#{@gym.users.count}人', member_path(@gym)%></p>
+        <a class="gym_card_text -number" href="<%= member_path(@gym) %>">メンバー<%= @gym.users.count%>人</a>
       </div>
-      <div class="card_footer">
-         <%= link_to 'edit', edit_gym_path(@gym), class: 'btn btn-lg btn-primary'%>
-
-        <%= render 'gym_users/join_button', gym: @gym %>
+      <div class="gym_card_footer">
+        <p><%= link_to "編集", edit_gym_path(@gym) %>
+        <%= render 'gym_users/join_button', gym: @gym %></p>
       </div>
     </article>
   </aside>
