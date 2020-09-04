@@ -1,9 +1,9 @@
 class GymsController < ApplicationController
   before_action :require_user_logged_in
-  #before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
   
   def index
-    @gyms = Gym.order(id: :desc).page(params[:page]).per(10)
+    @gyms = Gym.order(id: :desc).page(params[:page]).per(10).search(params[:search])
     
   end
   
@@ -54,11 +54,12 @@ class GymsController < ApplicationController
     params.require(:gym).permit(:name, :address, :img, user_ids: [] )
   end
   
-  #def correct_user
-   # @post = current_user.posts.find_by(id: params[:id]) #画像入れる？#
-    #unless @post
-     # redirect_to user_path(current_user.id)
-    #end
-#  end
+  def correct_user
+    @gym = current_user.gyms.find_by(id: params[:id])
+    unless @gym
+      flash[:danger] = '編集はジムの参加者のみです。'
+      redirect_back(fallback_location: root_path)
+    end
+  end
   
 end

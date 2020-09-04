@@ -24,6 +24,7 @@
 .gym_card_title {
   padding: 1rem 1rem 0;
   font-size: 1.25rem;
+  word-break: break-word;
 }
 
 .gym_card_thumbnail {
@@ -37,6 +38,7 @@
 
 .gym_card_body {
   padding: 1rem;
+  padding-bottom: 0;
   background-color: white;
 }
 
@@ -57,6 +59,5 @@
 
 .gym_card_footer {
   display: flex;
-  padding: 1rem;
-  border-top: 1px solid #ddd;
+  padding-left: 1rem;
 }

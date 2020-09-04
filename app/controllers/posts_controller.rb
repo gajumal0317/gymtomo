@@ -5,14 +5,19 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    
-    if @post.save
-      flash[:success] = '投稿しました。'
-      redirect_back(fallback_location: root_path)
+    if current_user.gyms.find_by(id: params[:id])
+      if @post.save
+        flash[:success] = '投稿しました。'
+        redirect_back(fallback_location: root_path)
+      else
+        @posts = current_user.posts.order(id: :desc).page(params[:page])
+        flash.now[:danger] = '投稿できませんでした。'
+        render :new
+      end
     else
       @posts = current_user.posts.order(id: :desc).page(params[:page])
-      flash.now[:danger] = '投稿できませんでした。'
-      render :new
+      flash.now[:danger] = '投稿はジムの参加者のみです。'
+      redirect_back(fallback_location: root_path)
     end
   end
 

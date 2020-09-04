@@ -1,0 +1,41 @@
+@mixin input{
+  border: none;
+  border-radius: .25rem;
+  background: #F4F8F9;
+  height: 37px;
+  width: 50%;
+  padding: 10px 20px;
+}
+
+.search_wap{
+  text-align: center;
+  margin-right: 15px;
+  position: relative; 
+  .input{
+    @include input;
+    text-align: center;
+    margin: 13px 0 0;
+  }
+  .search__button{
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    right: 25%;
+    top: 32%;
+    height: 37px;
+    width: 40px;
+    border-style: none;
+    border-radius: 0px 4px 4px 0px;
+    padding: 0px;
+    .icon_wap{
+      i{
+        position: absolute;
+        right: 14px;
+        top: 13px;
+        font-size: 13px;
+        font-weight: 900;
+        color: #999999;
+      }
+    }
+  }
+}

@@ -14,12 +14,12 @@
       </div>
       <div class="gym_card_body">
         <h3 class="gym_card_title"><%= gym.name %></h3>
-        <p class="gym_card_text"><%= gym.address %></p>
+        <p class="gym_card_text"><%=safe_join(gym.address.split("\n"),tag(:br))%></p>
         <p class="gym_card_text -number">メンバー<%= gym.users.count%>人</p>
       </div>
       <div class="gym_card_footer">
         <p class="gym_card_text">
-          <a class="button -compact" href="<%= gym_path(gym) %>" >ジムの詳細を見る</a></p>
+          <a href="<%= gym_path(gym) %>" >ジムの詳細を見る</a></p>
       </div>
     </article>
   <% end %>

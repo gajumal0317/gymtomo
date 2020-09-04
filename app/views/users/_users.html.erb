@@ -1,6 +1,6 @@
 <% if users.any? %>
     <% users.each do |user| %>
-           <article class="user_card">
+    <article class="user_card">
       <div class="user_card_header">
         <figure class="user_card_thumbnail">
           <img class="user_card_image">
@@ -14,7 +14,7 @@
       </div>
       <div class="user_card_body">
         <h3 class="user_card_title"><%= user.name %></h3>
-        <p class="user_card_text"><%= user.status %></p>
+        <p class="user_card_text"><%=safe_join(user.status.split("\n"),tag(:br))%></p>
       </div>
     </article>
     <% end %>

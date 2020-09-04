@@ -14,4 +14,12 @@ class Gym < ApplicationRecord
     has_many :users, through: :gym_users
     accepts_nested_attributes_for :gym_users
     has_many :posts
+    
+  def self.search(search)
+    if search
+      where(['name LIKE ? OR address LIKE ?', "%#{search}%", "%#{search}%"])
+    else
+      all
+    end
+  end
 end

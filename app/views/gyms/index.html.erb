@@ -1,2 +1,10 @@
+        <div class = search_wap>
+        <%= form_tag(gyms_path, :method => 'get' ) do %>
+        <%= text_field_tag :search, '', class: 'input',placeholder: "ジム検索"%>
+            <button type= 'submit' class='search__button icon_wap'>
+                <i class = "fas fa-search"></i>
+            </button>
+        <% end %>
+        </div> 
 
       <%= render 'gyms/gyms', gyms: @gyms %>

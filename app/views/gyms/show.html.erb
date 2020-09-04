@@ -14,7 +14,7 @@
       </div>
       <div class="gym_card_body">
         <h3 class="gym_card_title"><%= @gym.name %></h3>
-        <p class="gym_card_text"><%= @gym.address %></p>
+        <p class="gym_card_text"><%=safe_join(@gym.address.split("\n"),tag(:br))%></p>
         <a class="gym_card_text -number" href="<%= member_path(@gym) %>">メンバー<%= @gym.users.count%>人</a>
       </div>
       <div class="gym_card_footer">
