@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_05_114736) do
+ActiveRecord::Schema.define(version: 2020_09_06_101836) do
 
   create_table "gym_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_09_05_114736) do
     t.string "img"
     t.string "status"
     t.integer "purpose", default: 0
+    t.string "twitter"
   end
 
   add_foreign_key "gym_users", "gyms"

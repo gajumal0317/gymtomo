@@ -14,5 +14,6 @@
       <div class="user_card_body">
         <h3 class="user_card_title"><%= user.name %></h3>
         <p class="user_card_text"><%=safe_join(user.status.split("\n"),tag(:br))%></p>
+        <a href = "https://twitter.com/<%= user.twitter %>">twitterアカウント</a>
       </div>
     </article>

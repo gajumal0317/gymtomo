@@ -13,14 +13,19 @@
       <div class="form-group">
          <%= f.label :画像 %><br />
          <%= f.file_field :img, class: "image" %>
-      </div> 
-      <div class="form-group">
-        <%= f.label :status, 'コメント' %>
-        <%= f.text_area :status, class: 'form-control', rows: 4 %>
       </div>
       <div class="form-group"> 
-        <h5><%= f.label :purpose, '目的' %></h5>
+        <h5><%= f.label :purpose, '目的を選んでください' %></h5>
         <%=  f.select :purpose, User.purposes.keys, {}, class: 'form-control', id: 'user_purpose'%>        
       </div>
+      <div class="form-group">
+        <%= f.label :status, 'コメント（任意）' %>
+        <%= f.text_area :status, class: 'form-control', rows: 4 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :twitter, 'twitterアカウント（任意）' %>
+        <%= f.text_field :twitter,:placeholder => "@samle", class: 'form-control' %>
+      </div>
+      
   <%= f.submit 'プロフィール編集を完了する', class: 'btn btn-primary' %>
 <% end %>
