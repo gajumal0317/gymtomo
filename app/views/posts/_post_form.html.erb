@@ -1,9 +1,9 @@
-    <aside class="col-sm-4">
+
       <%= form_with(model: post, local: true) do |f| %>
         <%= f.hidden_field :gym_id, :value => gym.id %> 
      
         <div class="form-group">
-          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+          <%= f.text_area :content, class: 'form-control', rows: 3 %>
         </div>
         <div class="form-group">
          <%= f.label :画像 %><br />
@@ -12,4 +12,3 @@
         
         <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>
-    </aside>

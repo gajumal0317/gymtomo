@@ -1,32 +1,21 @@
 <div class="row">
-  <aside class="col-sm-4">
-    <article class="gym_card">
-      <div class="gym_card_header">
-        <figure class="gym_card_thumbnail">
-          <img class="gym_card_image">
-            <% if @gym.img? %>
-              <%= image_tag @gym.img.thumb.url %>
-            <% else %>
-              <%= image_tag "default_gym.jpg", :size => '200x200' %>
-            <% end %>
-          </img>
-        </figure>
-      </div>
-      <div class="gym_card_body">
-        <h3 class="gym_card_title"><%= @gym.name %></h3>
-        <p class="gym_card_text"><%=safe_join(@gym.address.split("\n"),tag(:br))%></p>
-        <a class="gym_card_text -number" href="<%= member_path(@gym) %>">メンバー<%= @gym.users.count%>人</a>
-      </div>
-      <div class="gym_card_footer">
-        <p><%= link_to "編集", edit_gym_path(@gym) %>
-        <%= render 'gym_users/join_button', gym: @gym %></p>
-      </div>
-    </article>
-  </aside>
-  <div class="col-sm-4">    
+  <div class="col-sm-offset-2 col-sm-4">
+    <ul class = "gym_card_wrap">
+      <article class="gym_card">
+      <%= render 'gyms/gyms', gym: @gym %>
+        <div class="gym_card_footer">
+          <p><%= link_to "編集", edit_gym_path(@gym) %>
+          <%= render 'gym_users/join_button', gym: @gym %></p>
+        </div>
+      </article>
+    </ul>
+  </div>
+  <div class="col-sm-4">
+  <% if current_user.joinings?(@gym)%>
     <%= render 'posts/post_form', {post: @post, gym: @gym} %>
+  <% end %>
   </div>
 </div>
-  <div class="card">
-    <%= render 'posts/posts', posts: @posts %>
-  </div>
+<%= render 'posts/posts', posts: @posts %>
+
+

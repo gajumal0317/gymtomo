@@ -1,13 +1,11 @@
-<ul class = "gym_card_wrap">
-  <% gyms.each do |gym| %>
-    <article class="gym_card">
+
       <div class="gym_card_header">
         <figure class="gym_card_thumbnail">
           <img class="gym_card_image">
             <% if gym.img? %>
               <%= image_tag gym.img.thumb.url %>
             <% else %>
-              <%= image_tag "default_gym.jpg", :size => '225x225' %>
+              <%= image_tag "default_gym.jpg", :size => '200x200' %>
             <% end %>
           </img>
         </figure>
@@ -15,13 +13,5 @@
       <div class="gym_card_body">
         <h3 class="gym_card_title"><%= gym.name %></h3>
         <p class="gym_card_text"><%=safe_join(gym.address.split("\n"),tag(:br))%></p>
-        <p class="gym_card_text -number">メンバー<%= gym.users.count%>人</p>
+        <a class="gym_card_text -number" href="<%= member_path(gym) %>">メンバー<%= gym.users.count%>人</a>
       </div>
-      <div class="gym_card_footer">
-        <p class="gym_card_text">
-          <a href="<%= gym_path(gym) %>" >ジムの詳細を見る</a></p>
-      </div>
-    </article>
-  <% end %>
-  <%= paginate gyms %>
-</ul>  

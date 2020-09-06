@@ -1,6 +1,6 @@
 .user_card {
   display: flex;
-  background-color: #4987ca;
+  background-color: aliceblue;;
   box-shadow: 0 0 8px rgba(0, 0, 0, .16);
   width: 80%;
   max-width: 500px;
@@ -34,6 +34,14 @@
 }
 .user_icon {
   border-radius: 50px;
+}
+
+.user_card_purpose {
+  margin-top: 5%;
+  margin-left: 20%;
+  font-size: .75rem;
+  color: white;
+  background-color: orange;
 }
 
 .user_card_body {

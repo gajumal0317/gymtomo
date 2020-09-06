@@ -31,4 +31,9 @@ class User < ApplicationRecord
   def joinings?(gym)
     self.gyms.include?(gym)
   end
+  
+  enum purpose:{
+     "未定":0,
+     健康:1,ダイエット:2,コンペティター:3,スポーツ:4,モテたい:5
+  }
 end

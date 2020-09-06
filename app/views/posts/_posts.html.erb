@@ -1,7 +1,6 @@
-<ul class="list-unstyled">
+<div class="post-area">
   <% posts.each do |post| %>
     <li class="media mb-3">
-      
       <div class="media-body">
         <% if post.user.img? %>                                                              
           <%= image_tag post.user.img.thumb50.url, class: 'user_icon' %>
@@ -9,14 +8,14 @@
           <%= image_tag "default.jpg", :size => '50x50',class: 'user_icon' %>
         <% end %>
         <div>
-          <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
+          <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted"><%= post.created_at.to_s(:datetime_jp) %></span>
         </div>
         <div>
           <p><%=safe_join(post.content.split("\n"),tag(:br))%></p>
         </div>
         
           <% if post.img? %>
-            <%= image_tag post.img.url %>
+            <%= image_tag post.img.thumb.url %>
           <% end %>
         <div>
           <% if current_user == post.user %>
@@ -27,4 +26,4 @@
     </li>
   <% end %>
   <%= paginate posts %>
-</ul>
+</div>

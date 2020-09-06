@@ -20,5 +20,15 @@
 /*}*/
 
 p {
- word-break: break-word;
+    word-break: break-word;
+}
+
+body {
+    background-color: antiquewhite;
+}
+
+.body-container {
+    padding-top: 4rem;
+    background-color: antiquewhite;
+    width :100%;
 }

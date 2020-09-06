@@ -6,5 +6,15 @@
             </button>
         <% end %>
         </div> 
-
-      <%= render 'gyms/gyms', gyms: @gyms %>
+<ul class = "gym_card_wrap">
+  <% @gyms.each do |gym| %>
+  <article class="gym_card">
+      <%= render 'gyms/gyms', gym: gym %>
+    <div class="gym_card_footer">
+      <p class="gym_card_text">
+        <a href="<%= gym_path(gym) %>" >ジムの詳細を見る</a></p>
+    </div>
+  </article>
+  <% end %>
+  <%= paginate @gyms %>
+</ul>  

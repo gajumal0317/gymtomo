@@ -1,22 +1,6 @@
 <% if @users.any? %>
     <% @users.each do |user| %>
-      <article class="user_card">
-      <div class="user_card_header">
-        <figure class="user_card_thumbnail">
-          <img class="user_card_image">
-            <% if user.img? %>
-              <%= image_tag user.img.thumb50.url, class: 'user_icon' %>
-            <% else %>
-              <%= image_tag "default.jpg", :size => '50x50', class: 'user_icon' %>
-            <% end %>
-          </img>
-        </figure>
-      </div>
-      <div class="user_card_body">
-        <h3 class="user_card_title"><%= user.name %></h3>
-        <p class="user_card_text"><%=safe_join(user.status.split("\n"),tag(:br))%></p>
-      </div>
-    </article>
+      <%= render 'users/users', user: user %>
     <% end %>
   <%= paginate @users %>
 <% end %>
