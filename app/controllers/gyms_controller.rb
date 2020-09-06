@@ -1,6 +1,6 @@
 class GymsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: [:edit, :update, :destroy]
   
   def index
     @gyms = Gym.order(id: :desc).page(params[:page]).per(10).search(params[:search])
@@ -47,17 +47,21 @@ class GymsController < ApplicationController
     end
   end
   
+  def destroy
+    @gym.destroy
+    flash[:success] = 'ジムを削除しました。'
+    redirect_back(fallback_location: root_path)
+  end
   
   private
 
   def gym_params
-    params.require(:gym).permit(:name, :address, :img, user_ids: [] )
+    params.require(:gym).permit(:name, :address, :img, :admin_user_id, user_ids: [] )
   end
   
-  def correct_user
-    @gym = current_user.gyms.find_by(id: params[:id])
-    unless @gym
-      flash[:danger] = '編集はジムの参加者のみです。'
+  def admin_user
+    @gym = Gym.find_by(id: params[:id])
+    unless current_user.id == @gym.admin_user_id
       redirect_back(fallback_location: root_path)
     end
   end

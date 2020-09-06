@@ -4,8 +4,13 @@
       <article class="gym_card">
       <%= render 'gyms/gyms', gym: @gym %>
         <div class="gym_card_footer">
+          <% if current_user.id == @gym.admin_user_id %>
           <p><%= link_to "編集", edit_gym_path(@gym) %>
+          <% end %>
           <%= render 'gym_users/join_button', gym: @gym %></p>
+          <% if current_user.id == @gym.admin_user_id %>
+            <%= link_to "Delete", @gym, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
         </div>
       </article>
     </ul>
