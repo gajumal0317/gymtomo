@@ -5,8 +5,8 @@ FactoryBot.define do
     password { 'password' }
     password_confirmation { 'password' }
     
-    after(:create) do |user|
-      create(:gym_user, user: user, gym: create(:gym))
-    end
+    #after(:create) do |user|
+      #create(:gym_user, user: user, gym: create(:gym))
+    #end
   end
 end

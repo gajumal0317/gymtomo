@@ -6,13 +6,11 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
       if @post.save
-        flash[:success] = '投稿しました。'
-        redirect_back(fallback_location: root_path)
       else
-      
-        flash.now[:danger] = '投稿できませんでした。'
-        render :new
+        #投稿に失敗したときフラッシュが出ない＝投稿できたことになっている。
+        flash[:danger] = '投稿できませんでした。'
       end
+      redirect_back(fallback_location: root_path)
   end
 
   def edit
@@ -20,7 +18,6 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flash[:success] = '投稿は正常に更新されました'
       redirect_to user_path(current_user.id)
     else
       flash.now[:danger] = '投稿は更新されませんでした'
@@ -37,11 +34,11 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :img, :gym_id)
+    params.require(:post).permit(:content, :img, :user_id, :gym_id)
   end
   
   def correct_user
-    @post = current_user.posts.find_by(id: params[:id]) #画像入れる？#
+    @post = current_user.posts.find_by(id: params[:id])
     unless @post
       redirect_to user_path(current_user.id)
     end

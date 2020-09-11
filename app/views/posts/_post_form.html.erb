@@ -1,5 +1,6 @@
 
       <%= form_with(model: post, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
         <%= f.hidden_field :gym_id, :value => gym.id %> 
      
         <div class="form-group">

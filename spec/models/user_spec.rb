@@ -118,8 +118,18 @@ RSpec.describe User, type: :model do
     
     context 'Gymモデルとの関係' do
       let(:target) { :gyms }
+      
+      it '1:Nとなっている（中間テーブルgym_usersを介すので多対多）' do
+        expect(association.macro).to eq :has_many
+      end
+    end
+    
+    context '中間テーブルGymUserモデルとの関係' do
+      let(:target) { :gym_users }
 
-      it { expect(association.class_name).to eq 'Gym' }
+      it '1:Nとなっている' do
+        expect(association.macro).to eq :has_many
+      end
     end
   end
 end
