@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :post do
-    #content {何か書く}
+    content { Faker::Lorem.characters(number: 20) }
+    img {Rack::Test::UploadedFile.new(File.join(Rails.root, 'app/assets/images/default.jpg'))}
     association :user
     association :gym
   # factory名が違う場合以下のように記述する
