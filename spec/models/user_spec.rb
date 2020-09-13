@@ -21,6 +21,7 @@ RSpec.describe User, type: :model do
       it '空欄の場合はエラーが出る' do
         test_user.name = ''
         test_user.valid?
+        #includeは「配列に～が含まれていること」を検証することができる
         expect(test_user.errors[:name]).to include("を入力してください")
       end
     end
