@@ -6,5 +6,10 @@ FactoryBot.define do
     association :gym
   # factory名が違う場合以下のように記述する
   # association :user, factory: :tom
+  
+     # 無効になっている
+    trait :invalid do
+      content { nil }
+    end
   end
 end

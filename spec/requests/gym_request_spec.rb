@@ -35,14 +35,36 @@ RSpec.describe Gym, type: :request do
       before do
         login_rspec(user)
       end
+      context '有効な属性値の場合' do
+        it "ジムを作成できる" do
+          gym_params = FactoryBot.attributes_for(:gym)
+            expect do
+              post "/gyms", params: { gym: gym_params }
+            end.to change(Gym.all, :count).by(1)
+            expect(response).to redirect_to user_path(user)
+            expect(response).to have_http_status "302"
+        end
+      end
       
-      it "ジムを作成できる" do
+      context '無効な属性値の場合' do
+        it 'ジムを作成できないこと' do
+          gym_params = FactoryBot.attributes_for(:gym, :invalid)
+          expect { post '/gyms', params: { gym: gym_params } }.to_not change(Gym, :count)
+        end
+      end
+    end
+    
+    context 'ログインしないで' do
+      it '302レスポンスを返すこと' do
         gym_params = FactoryBot.attributes_for(:gym)
-          expect do
-            post "/gyms", params: { gym: gym_params }
-          end.to change(Gym.all, :count).by(1)
-          expect(response).to redirect_to user_path(user)
-          expect(response).to have_http_status "302"
+        post '/gyms', params: { gym: gym_params }
+        expect(response).to have_http_status '302'
+      end
+
+      it 'ログインにリダイレクトすること' do
+        gym_params = FactoryBot.attributes_for(:gym)
+        post '/gyms', params: { gym: gym_params }
+        expect(response).to redirect_to login_path
       end
     end
   end

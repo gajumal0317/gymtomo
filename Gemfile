@@ -44,6 +44,8 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.10.0'
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
   gem 'forgery_ja'
+  gem 'capybara', '>= 2.15'
+  gem 'webdrivers'
 end
 
 group :development do
