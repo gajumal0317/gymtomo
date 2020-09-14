@@ -22,7 +22,34 @@ RSpec.describe User, type: :request do
       end
     end
   end
-  
+
+  describe 'Post #create' do
+    context '有効なパラメータの場合' do
+      let(:user_params) {FactoryBot.attributes_for(:user)}
+      
+      it 'リクエストは302 リダイレクトとなること' do
+        post '/users', params: { user: user_params }
+        expect(response.status).to eq 302
+      end
+      it 'データベースに新しいユーザーが登録されること' do
+        expect { post '/users', params: { user: user_params } }.to change { User.count }.by(1)
+      end
+
+    end
+    context '無効なパラメータの場合' do
+      let(:user_params) {FactoryBot.attributes_for(:user, :invalid)}
+      
+      it 'リクエストが成功することと' do
+        post '/users', params: { user: user_params }
+        expect(response.status).to eq 200
+      end
+      it 'データベースに新しいユーザーが登録されないこと' do
+        expect { post '/users', params: { user: user_params } }.to_not change { User.count }
+      end
+
+    end
+  end
+
   describe "ユーザー編集ページを表示(GET #edit)" do
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
