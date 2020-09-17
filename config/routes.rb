@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
     
     resources :posts, only: [:new, :create, :edit, :update, :destroy]
-    resources :gyms, only: [:index, :new, :show, :create, :edit, :update]
+    resources :gyms
     resources :gym_users, only: [:create, :destroy]
     
 end

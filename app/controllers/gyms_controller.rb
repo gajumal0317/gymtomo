@@ -4,7 +4,6 @@ class GymsController < ApplicationController
   
   def index
     @gyms = Gym.order(id: :desc).page(params[:page]).per(10).search(params[:search])
-    
   end
   
   def new
@@ -13,7 +12,7 @@ class GymsController < ApplicationController
 
   def show
     @gym = Gym.find(params[:id])
-    @post = current_user.posts.build # form_with 用
+    @post = current_user.posts.build
     @posts = @gym.posts.order(id: :desc).page(params[:page]).per(10)
   
   end
@@ -27,7 +26,7 @@ class GymsController < ApplicationController
     @gym = Gym.new(gym_params)
     if @gym.save
       flash[:success] = 'ジムを登録しました'
-      redirect_to user_path(current_user)
+      redirect_to gyms_path
     else
       render :new
     end
@@ -50,7 +49,7 @@ class GymsController < ApplicationController
   def destroy
     @gym.destroy
     flash[:success] = 'ジムを削除しました。'
-    redirect_back(fallback_location: root_path)
+    redirect_to gyms_path
   end
   
   private

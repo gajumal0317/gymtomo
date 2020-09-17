@@ -1,19 +1,42 @@
-      <article class="user_card">
-      <div class="user_card_header">
-        <figure class="user_card_thumbnail">
-          <img class="user_card_image">
-            <% if user.img? %>
-              <%= image_tag user.img.thumb50.url, class: 'user_icon' %>
-            <% else %>
-              <%= image_tag "default.jpg", :size => '50x50', class: 'user_icon' %>
-            <% end %>
-          </img>
-        </figure>
-        <p class="user_card_purpose badge"><%= user.purpose %></p>
-      </div>
-      <div class="user_card_body">
-        <h3 class="user_card_title"><%= user.name %></h3>
-        <p class="user_card_text"><%=safe_join(user.status.to_s.split("\n"),tag(:br))%></p>
-        <a href = "https://twitter.com/<%= user.twitter %>">twitterアカウント</a>
-      </div>
-    </article>
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-4" style="text-align: center;">
+    <img class="user_card_image">
+      <% if user.img? %>
+        <%= image_tag user.img.thumb.url, class: 'user_icon' %>
+      <% else %>
+        <%= image_tag "default.jpg", :size => '200x200', class: 'user_icon' %>
+      <% end %>
+    </img>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-8">
+    <table>
+      <tbody>
+        <tr>
+          <th>名前</th>
+            <td><%= user.name %></td>
+        </tr>
+        <tr>    
+          <th>メールアドレス</th>
+            <td><%= user.email %></td>
+        </tr>
+        <tr>
+          <th>目的</th>
+            <td><%= user.purpose %></td>
+        </tr>
+        <tr>
+          <th>コメント</th>
+            <td class="user_card_text"><%=safe_join(user.status.to_s.split("\n"),tag(:br))%></td>
+        </tr>
+        <tr>
+          <th>twitter</th>
+            <td><a href = "https://twitter.com/<%= user.twitter %>"><%= user.twitter %></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+    
+    
+    
+    
+       

@@ -10,10 +10,10 @@ class Gym < ApplicationRecord
         errors.add(:img, "should be less than 5MB")
       end
     end
-    has_many :gym_users
+    has_many :gym_users, dependent: :destroy
     has_many :users, through: :gym_users
     accepts_nested_attributes_for :gym_users
-    has_many :posts
+    has_many :posts, dependent: :destroy
     
   def self.search(search)
     if search

@@ -1,6 +1,8 @@
 <% if @users.any? %>
+  <ul class = "user_card_wrap">
     <% @users.each do |user| %>
-      <%= render 'users/users', user: user %>
+      <%= render 'gyms/members', user: user %>
     <% end %>
   <%= paginate @users %>
+  </ul>
 <% end %>

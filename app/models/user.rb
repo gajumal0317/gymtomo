@@ -16,8 +16,8 @@ class User < ApplicationRecord
       end
     end
     has_secure_password
-    has_many :posts
-    has_many :gym_users
+    has_many :posts, dependent: :destroy
+    has_many :gym_users, dependent: :destroy
     has_many :gyms, through: :gym_users
     
   def join(gym)

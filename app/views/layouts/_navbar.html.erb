@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>
-              <li class="nav-item"><%= link_to 'あなたのジム', user_path(current_user), class: 'nav-link' %></li>
+              <li><a class="nav-item nav-link" href="<%=user_path(current_user)%>"><%=current_user.name%>さんのジム</a></li>
               <li class="dropdown-divider"></li>
               <li class="nav-item"><%= link_to 'ジムを探す', gyms_path, class: 'nav-link' %></li>
               <li class="dropdown-divider"></li>

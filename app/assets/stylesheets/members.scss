@@ -1,6 +1,13 @@
+.user_card_wrap {
+    display: flex;
+    padding: 2.5% 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .user_card {
   display: flex;
-  background-color: aliceblue;;
+  background-color: steelblue;;
   box-shadow: 0 0 8px rgba(0, 0, 0, .16);
   width: 80%;
   max-width: 500px;
@@ -21,6 +28,12 @@
   padding: 0;
   font-size: 1.25rem;
   word-break: break-word;
+  color: black;
+}
+
+.user_card_title:hover {
+  color: black;
+  text-decoration: none;
 }
 
 .user_card_thumbnail {
@@ -32,7 +45,7 @@
   width: 100%;
 }
 .user_icon {
-  border-radius: 50px;
+  border-radius: 50% !important;
 }
 
 .user_card_purpose {
