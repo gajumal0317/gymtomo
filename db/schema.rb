@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_110943) do
+ActiveRecord::Schema.define(version: 2020_09_19_082310) do
 
   create_table "gym_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -43,10 +43,20 @@ ActiveRecord::Schema.define(version: 2020_09_06_110943) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "trainings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "part"
+    t.bigint "user_id"
+    t.bigint "gym_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gym_id"], name: "index_trainings_on_gym_id"
+    t.index ["user_id"], name: "index_trainings_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "img"
@@ -58,4 +68,6 @@ ActiveRecord::Schema.define(version: 2020_09_06_110943) do
   add_foreign_key "gym_users", "gyms"
   add_foreign_key "gym_users", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "trainings", "gyms"
+  add_foreign_key "trainings", "users"
 end

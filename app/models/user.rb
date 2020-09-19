@@ -19,6 +19,7 @@ class User < ApplicationRecord
     has_many :posts, dependent: :destroy
     has_many :gym_users, dependent: :destroy
     has_many :gyms, through: :gym_users
+    has_many :trainings, dependent: :destroy
     
   def join(gym)
     self.gym_users.find_or_create_by(gym_id: gym.id)
