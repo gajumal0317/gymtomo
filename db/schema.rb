@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_19_082310) do
+ActiveRecord::Schema.define(version: 2020_09_19_120437) do
 
   create_table "gym_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -44,11 +44,14 @@ ActiveRecord::Schema.define(version: 2020_09_19_082310) do
   end
 
   create_table "trainings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "part"
-    t.bigint "user_id"
-    t.bigint "gym_id"
+    t.integer "part1", default: 0
+    t.integer "part2", default: 0
+    t.integer "part3", default: 0
+    t.bigint "user_id", null: false
+    t.bigint "gym_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "partner", default: "なし"
     t.index ["gym_id"], name: "index_trainings_on_gym_id"
     t.index ["user_id"], name: "index_trainings_on_user_id"
   end

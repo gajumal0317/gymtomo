@@ -1,0 +1,29 @@
+<div class="col-sm-12 col-md-6 col-lg-8">
+  <% trainings.each do |training| %>
+    <table>
+      <tbody>
+        <tr>
+          <th>ジム</th>
+            <td><%= training.gym.name %></td>
+        </tr>
+        <tr>
+          <th>partner</th>
+            <td><%= training.partner %></td>
+        </tr>
+        <tr>
+          <th>部位1</th>
+            <td><%= training.part1 %></td>
+        </tr>
+        <tr>
+          <th>部位2</th>
+            <td><%= training.part2 %></td>
+        </tr>
+        <tr>
+          <th>部位3</th>
+            <td><%= training.part3 %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+  <%= paginate trainings %>
+</div>

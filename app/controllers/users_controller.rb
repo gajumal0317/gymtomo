@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @gyms = @user.gyms.order(id: :desc).page(params[:page]).per(25) 
+    @trainings = @user.trainings.order(id: :desc).page(params[:page]).per(8)
     
   end
 

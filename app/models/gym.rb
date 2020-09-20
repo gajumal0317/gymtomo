@@ -14,6 +14,7 @@ class Gym < ApplicationRecord
     has_many :users, through: :gym_users
     accepts_nested_attributes_for :gym_users
     has_many :posts, dependent: :destroy
+    has_many :trainings, dependent: :destroy
     
   def self.search(search)
     if search

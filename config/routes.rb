@@ -18,5 +18,5 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :edit, :update, :destroy]
     resources :gyms
     resources :gym_users, only: [:create, :destroy]
-    
+    resources :trainings
 end
