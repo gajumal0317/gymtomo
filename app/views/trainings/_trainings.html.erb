@@ -1,7 +1,11 @@
-<div class="col-sm-12 col-md-6 col-lg-8">
+<div class="col-sm-12 col-md-3 col-lg-4">
   <% trainings.each do |training| %>
     <table>
       <tbody>
+        <tr>
+          <th>日付</th>
+            <td><%= training.created_at.to_s(:datetime_jp) %></td>
+        </tr>
         <tr>
           <th>ジム</th>
             <td><%= training.gym.name %></td>
@@ -21,6 +25,17 @@
         <tr>
           <th>部位3</th>
             <td><%= training.part3 %></td>
+        </tr>
+        <tr>
+          <th>option</th>
+            <td>
+              <% if current_user == training.user %>
+                <%= link_to "削除", training, method: :delete, data: { confirm: "You sure?" }%>
+              <% end %>
+              <% if current_user == training.user %>
+                <p><%= link_to "編集", edit_training_path(training)%>
+              <% end %>
+            </td>
         </tr>
       </tbody>
     </table>

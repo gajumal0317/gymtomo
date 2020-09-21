@@ -19,10 +19,11 @@ class TrainingsController < ApplicationController
   end
   
   def edit
+    @training = Training.find(params[:id])
   end
 
   def update
-    if @post.update(post_params)
+    if @training.update(training_params)
       redirect_to user_path(current_user.id)
     else
       flash.now[:danger] = '投稿は更新されませんでした'
@@ -31,6 +32,9 @@ class TrainingsController < ApplicationController
   end
 
   def destroy
+    @training.destroy
+    flash[:success] = '記録を削除しました'
+    redirect_to user_path(current_user)
   end
   
   private
