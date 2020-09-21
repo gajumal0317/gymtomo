@@ -64,6 +64,15 @@ class UsersController < ApplicationController
     
     @today = Date.today
     @lastmonth_today = @today.prev_day(14)
+    
+    part1 = @user.trainings.group(:part1).count
+    part2 = @user.trainings.group(:part2).count
+    part3 = @user.trainings.group(:part3).count
+    
+    parts_merge1 = part1.merge(part2){|k, v1, v2| v1+v2}
+    parts_merge2 = parts_merge1.merge(part3){|k, v1, v2| v1+v2}
+    parts_merge2.delete("なし")
+    @parts_merge = parts_merge2
   end
   
   private
