@@ -1,0 +1,4 @@
+
+<%= column_chart @data2, width: "100%", height: "300px",min: 0, max: 20, xmin: @lastmonth_today, xmax: @today,label: "回数",xtitle: "日付",ytitle: "トレーニング回数
+" %>
+<%= pie_chart @user.trainings.group(:gym_id).count %>

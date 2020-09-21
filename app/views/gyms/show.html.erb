@@ -8,6 +8,7 @@
     <% if current_user.joinings?(@gym)%>
       <%= render 'posts/post_form', {post: @post, gym: @gym} %>
     <% end %>
+    <%= pie_chart @gym.users.group(:purpose).count %>
     <div class = "gym-edit">
       <% if current_user.id == @gym.admin_user_id %>
           <p><%= link_to "編集", edit_gym_path(@gym) %>

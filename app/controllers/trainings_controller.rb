@@ -2,13 +2,10 @@ class TrainingsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:edit, :update, :destroy]
   
-  
   def new
     @training = Training.new
   end
 
-
-  
   def create
     @training = current_user.trainings.build(training_params)
       if @training.save

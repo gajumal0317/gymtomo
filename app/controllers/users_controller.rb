@@ -51,7 +51,21 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def records
+    @user = User.find(params[:id])
+    data2 = @user.trainings
+    c = []
 
+    # data2の値を日付（mm/dd/yyyy）形式の文字列に変換して取得し配列に格納
+    data2.each do |d|
+      c << d.created_at.strftime('%Y/%m').to_s
+    end
+    @data2 = c.each_with_object(Hash.new(0)){|v,o| o[v]+=1}
+    
+    @today = Date.today
+    @lastmonth_today = @today.prev_day(14)
+  end
+  
   private
 
   def user_params
