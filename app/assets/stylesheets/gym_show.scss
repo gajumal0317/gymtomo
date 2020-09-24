@@ -1,4 +1,20 @@
 .gym-edit {
-display :flex;
-padding: 1rem;
+  display :flex;
+  padding: 1rem;
+}
+.gym_pie_chart {
+  margin-top: 1rem;
+}
+
+.pie_chart_title {
+  text-align: center;
+}
+
+.img_btn_form {
+  display: flex;
+} 
+
+.btn_post {
+  height: fit-content;
+  margin: auto;
 }

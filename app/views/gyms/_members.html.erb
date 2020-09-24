@@ -9,11 +9,11 @@
             <% end %>
           </img>
         </figure>
+        <p class="user_card_purpose badge"><%= user.purpose %></p>
       </div>
       <div class="user_card_body">
         <h3><a class="user_card_title" href="<%= user_path(user) %>"><%= user.name %></a></h3>
         <p class="user_card_text"><%=safe_join(user.status.to_s.split("\n"),tag(:br))%></p>
-        <p class="user_card_purpose badge"><%= user.purpose %></p>
       </div>
     </article>
     

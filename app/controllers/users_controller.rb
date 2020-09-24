@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @gyms = @user.gyms.order(id: :desc).page(params[:page]).per(25) 
-    @trainings = @user.trainings.order(id: :desc).page(params[:page]).per(8)
+    
     
   end
 
@@ -65,14 +65,21 @@ class UsersController < ApplicationController
     @today = Date.today
     @lastmonth_today = @today.prev_day(14)
     
+  #pie_chart作成
+    #各partのハッシュをカウント
     part1 = @user.trainings.group(:part1).count
     part2 = @user.trainings.group(:part2).count
     part3 = @user.trainings.group(:part3).count
-    
+    #３つハッシュの結合
     parts_merge1 = part1.merge(part2){|k, v1, v2| v1+v2}
     parts_merge2 = parts_merge1.merge(part3){|k, v1, v2| v1+v2}
-    parts_merge2.delete("なし")
-    @parts_merge = parts_merge2
+    parts_merge2.delete("-")
+    @parts_chart = parts_merge2
+    
+    @trainings = @user.trainings.order(id: :desc).page(params[:page]).per(8)
+    
+
+    
   end
   
   private

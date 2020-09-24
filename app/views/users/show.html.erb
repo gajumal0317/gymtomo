@@ -1,11 +1,6 @@
 <%= render 'users', user: @user %>
-<div class = 'your-gym-comment'>
-  <h5><%= @user.name %>さんの参加しているジム</h5>
-  <h3><a href="<%= new_training_path(@user) %>">記録する</a></h3>
+<%= render 'users/navtab', user: @user %>
 
-  <%= link_to "記録をみる", records_user_path(@user) %>
-  <%= render 'trainings/trainings', trainings: @trainings %>
-</div>
 <ul class = "gym_card_wrap">
   <% @gyms.each do |gym| %>
       <%= render 'gyms/gyms', gym: gym %>

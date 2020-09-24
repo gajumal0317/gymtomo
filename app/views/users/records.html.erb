@@ -1,6 +1,10 @@
+<%= render 'users', user: @user %>
+<%= render 'users/navtab', user: @user %>
+<%= column_chart @data2, width: "100%", height: "300px",min: 0, max: 20, 
+xmin: @lastmonth_today, xmax: @today,label: "回数",xtitle: "日付",ytitle: "トレーニング回数",
+messages: {empty: "No data"} %>
 
-<%= column_chart @data2, width: "100%", height: "300px",min: 0, max: 20, xmin: @lastmonth_today, xmax: @today,label: "回数",xtitle: "日付",ytitle: "トレーニング回数
-", messages: {empty: "No data"} %>
 
-
-<%= pie_chart @parts_merge, messages: {empty: "No data"}%>
+<%= pie_chart @parts_chart,donut: true, messages: {empty: "No data"},
+colors: ["#aecbe8","#1fb3a3", "#1f8db3","#54b31f","#b38a1f", "#9fb31f","#eaeaea"]%>
+<%= render 'trainings/trainings', trainings: @trainings %>

@@ -1,29 +1,36 @@
 <div class="post_area">
+    
   <% posts.each do |post| %>
-    <li class="media mb-3">
-      <div class="media-body">
-        <% if post.user.img? %>                                                              
-          <%= image_tag post.user.img.thumb50.url, class: 'user_icon' %>
-        <% else %>
-          <%= image_tag "default.jpg", :size => '50x50',class: 'user_icon' %>
-        <% end %>
-        <div>
-          <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted"><%= post.created_at.to_s(:datetime_jp) %></span>
-        </div>
-        <div>
-          <p><%=safe_join(post.content.split("\n"),tag(:br))%></p>
-        </div>
-        
-          <% if post.img? %>
-            <%= image_tag post.img.thumb.url %>
-          <% end %>
-        <div>
-          <% if current_user == post.user %>
-            <%= link_to "Delete", post, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-          <% end %>
-        </div>
-      </div>
-    </li>
+    <table class="mb-3">
+      <tbody class="media-body">
+        <tr>
+          <th class="post_th">
+            <% if post.user.img? %>                                                              
+              <%= image_tag post.user.img.thumb50.url, class: 'user_icon' %>
+            <% else %>
+              <%= image_tag "default.jpg", :size => '50x50',class: 'user_icon' %>
+            <% end %>
+            <div>
+              <%= link_to post.user.name, user_path(post.user) %>
+            </div>
+          </th>
+          <td class="post_td">
+            <div>
+              <span class="text-muted"><%= post.created_at.to_s(:datetime_jp) %></span>
+            </div>
+            <div>
+              <p><%=safe_join(post.content.split("\n"),tag(:br))%></p>
+            </div>
+            <% if post.img? %>
+              <%= image_tag post.img.thumb.url %>
+            <% end %>
+            <% if current_user == post.user %>
+              <%= link_to "Delete", post, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-secondary btn-sm delete_btn' %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   <% end %>
   <%= paginate posts %>
 </div>

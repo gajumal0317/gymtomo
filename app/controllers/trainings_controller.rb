@@ -12,7 +12,7 @@ class TrainingsController < ApplicationController
       else
         flash[:danger] = '投稿できませんでした。'
       end
-      redirect_to user_path(current_user)
+      redirect_to records_user_path(current_user)
   end
   
   def edit
@@ -21,7 +21,7 @@ class TrainingsController < ApplicationController
 
   def update
     if @training.update(training_params)
-      redirect_to user_path(current_user.id)
+      redirect_to records_user_path(current_user)
     else
       flash.now[:danger] = '投稿は更新されませんでした'
       render :edit

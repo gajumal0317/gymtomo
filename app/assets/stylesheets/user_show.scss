@@ -54,3 +54,25 @@ text-align: center;
 margin-top: 1rem;
 background-color: aliceblue;
 }
+
+.nav-link-test {
+ font-weight: 700;
+ display: block;
+ padding: .5rem 1rem;
+ color: #495057;
+ border-bottom: 1px solid #59a0e6;
+}
+
+.nav-link-test:hover {
+ color: #495057;
+ text-decoration: none;
+}
+
+
+.nav-link-test.active {
+ border: 1px solid transparent;
+ border-top-left-radius: .25rem;
+ border-top-right-radius: .25rem;
+ color: #495057;
+ border-color: #59a0e6 #59a0e6 antiquewhite;
+}

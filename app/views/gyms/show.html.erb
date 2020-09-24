@@ -3,12 +3,6 @@
     <ul class = "gym_card_wrap">
         <%= render 'gyms/gyms', gym: @gym %>
     </ul>
-  </div>
-  <div class="col-sm-6">
-    <% if current_user.joinings?(@gym)%>
-      <%= render 'posts/post_form', {post: @post, gym: @gym} %>
-    <% end %>
-    <%= pie_chart @gym.users.group(:purpose).count %>
     <div class = "gym-edit">
       <% if current_user.id == @gym.admin_user_id %>
           <p><%= link_to "編集", edit_gym_path(@gym) %>
@@ -18,6 +12,18 @@
         <%= link_to "Delete", @gym, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
       <% end %>
     </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="gym_pie_chart">
+      <div class="pie_chart_title">
+        <p>ジム参加者の目的の割合</p>
+      </div> 
+      <%= pie_chart @gym.users.group(:purpose).count ,colors: ["#aecbe8","#1fb3a3", "#1f8db3","#54b31f","#b38a1f", "#9fb31f","#eaeaea"],
+          widh: "400px", height: "250px"%>
+    </div>
+    <% if current_user.joinings?(@gym)%>
+      <%= render 'posts/post_form', {post: @post, gym: @gym} %>
+    <% end %>
   </div>
 </div>
 <%= render 'posts/posts', posts: @posts %>
